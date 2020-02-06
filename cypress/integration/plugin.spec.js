@@ -337,4 +337,10 @@ context("Cypress Wait Until", () => {
     cy.waitUntil(checkFunction, { verbose: true });
     cy.waitUntil(checkFunction2, options);
   });
+  it.only("function as message argument", () => {
+    const ERROR_MESSAGE = () => "myResult"
+    cy.once("fail", err => {
+      expect(err.message).to.be.equal("myResult");
+    });
+  })
 });

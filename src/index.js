@@ -57,7 +57,14 @@ const waitUntil = (subject, checkFunction, originalOptions = {}) => {
       return result;
     }
     if (retries < 1) {
-      throw new Error(options.errorMsg);
+      var errorMsg;
+      const type = Object.prototype.toString.call(options.errorMsg);
+      if (type == '[object String]') {
+        errorMsg = options.errorMsg;
+      } else if (type == '[object Function]') {
+        errorMsg = options.errorMsg();
+      }
+      throw new Error(errorMsg);
     }
     cy.wait(options.interval, { log: false }).then(() => {
       retries--;

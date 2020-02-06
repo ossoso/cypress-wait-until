@@ -19,7 +19,7 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     },
-    "cypressUploadRecordings": true
+    "cypressUploadRecordings": false
   },
   "scripts": {
     "commit": "git-cz",
